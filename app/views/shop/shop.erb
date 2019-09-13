@@ -1,0 +1,41 @@
+<div class='shop-page'>
+  <div class='panel'>
+    <div class='shop-image' style='background-image: url(<%= @shop['image_url'] %>)'></div>
+    <h1><%= @shop['name'] %></h1>
+    <% @shop['location']['display_address'].each do |address| %>
+      <div>
+        <%= address %>
+      </div>
+    <% end %>
+    <%= (@shop['rating'] * 2).round %>/10 (<%= @shop['review_count'] %>)
+  </div>
+
+  <div class='panel'>
+    <div class='tabs'>
+      <%= link_to("Reviews (#{@shop['review_count']})", "/shops/#{@shop['alias']}/reviews", class: 'tab') %>
+      <%= link_to("Photos (#{@shop['photos'].count})", "/shops/#{@shop['alias']}/photos", class: 'tab') %>
+    </div>
+    <% if @current_tab == 'reviews' %>
+      <% @reviews.each do |review| %>
+        <div class='review'>
+          <div class='user-image' style='background-image: url(<%= review['user']['image_url'] %>)'></div>
+          <div class='details'>
+            <div class='name'>
+              <%= review['user']['name'] %>
+            </div>
+            <div class='rating'><%= review['rating'] * 2 %>/10</div>
+            <div class='text'>
+              <%= review['text'] %>
+            </div>
+          </div>
+        </div>
+      <% end %>
+    <% elsif @current_tab == 'photos' %>
+      <div class='photos'>
+        <% @shop['photos'].each do |photo| %>
+            <div class='photo' style='background-image: url(<%= photo %>)'></div>
+        <% end %>
+      </div>
+    <% end %>
+  </div>
+</div>

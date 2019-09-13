@@ -1,0 +1,16 @@
+$white: hsl(38, 36%, 96%);
+$black: hsl(44, 18%, 16%);
+$background-color: hsl(24, 68%, 92%);
+$red: hsl(6, 98%, 64%);
+
+@mixin medium {
+  @media (min-width: 512px) {
+    @content;
+  }
+}
+
+@mixin large {
+  @media (min-width: 768px) {
+    @content;
+  }
+}

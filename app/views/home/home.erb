@@ -1,0 +1,17 @@
+<div class='home-page'>
+  <h1>Best Overall Shops in LA</h2>
+  <% @shops.each do |shop| %>
+    <div class='shop panel' style='background-image: url(<%= shop['image_url'] %>)'>
+      <div class='background'></div>
+      <div class='details'>
+        <%= link_to(tag.h2(shop['name']), "/shops/#{shop['alias']}") %>
+          <% shop['location']['display_address'].each do |address| %>
+            <div>
+              <%= address %>
+            </div>
+          <% end %>
+          <%= (shop['rating'] * 2).round %>/10 (<%= shop['review_count'] %>)
+      </div>
+    </div>
+  <% end %>
+</div>
